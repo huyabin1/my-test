@@ -1,0 +1,128 @@
+@import './variables';
+@import './mixins';
+
+.toast-container {
+  position: fixed;
+  top: $space-4;
+  right: $space-4;
+  z-index: $z-notification;
+  display: flex;
+  flex-direction: column;
+  gap: $space-3;
+  max-width: 420px;
+
+  @include respond-to('sm') {
+    max-width: 100%;
+    width: auto;
+  }
+}
+
+.notification {
+  @include flex-between;
+  gap: $space-3;
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-left: 4px solid;
+  border-radius: $border-radius-md;
+  padding: $space-3 $space-4;
+  @include shadow(lg);
+  animation: slideIn 300ms ease-out;
+
+  @include respond-to('sm') {
+    margin: 0 $space-2;
+  }
+
+  &__content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  &__title {
+    margin: 0;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-semibold;
+    color: var(--text-primary);
+  }
+
+  &__message {
+    margin: $space-1 0 0;
+    font-size: $font-size-sm;
+    color: var(--text-secondary);
+  }
+
+  &__action {
+    flex-shrink: 0;
+    padding: $space-1 $space-2;
+    background: none;
+    border: none;
+    color: $color-primary;
+    font-weight: $font-weight-medium;
+    font-size: $font-size-sm;
+    cursor: pointer;
+    @include smooth-transition;
+
+    &:hover {
+      color: $color-primary-dark;
+    }
+  }
+
+  &__close {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    @include flex-center;
+    @include smooth-transition;
+
+    &:hover {
+      color: var(--text-primary);
+    }
+  }
+
+  &--success {
+    border-left-color: $color-success;
+
+    .notification__title {
+      color: $color-success;
+    }
+  }
+
+  &--error {
+    border-left-color: $color-error;
+
+    .notification__title {
+      color: $color-error;
+    }
+  }
+
+  &--warning {
+    border-left-color: $color-warning;
+
+    .notification__title {
+      color: $color-warning;
+    }
+  }
+
+  &--info {
+    border-left-color: $color-info;
+
+    .notification__title {
+      color: $color-info;
+    }
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(400px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}

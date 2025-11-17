@@ -1,0 +1,239 @@
+@import './variables';
+@import './mixins';
+
+// Button Styles
+.btn {
+  @include flex-center;
+  gap: $space-2;
+  padding: $space-2 $space-4;
+  border-radius: $border-radius-md;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  @include focus-visible;
+  @include smooth-transition;
+  cursor: pointer;
+  border: none;
+
+  &.btn-primary {
+    background-color: $color-primary;
+    color: $color-white;
+
+    &:hover:not(:disabled) {
+      background-color: $color-primary-dark;
+    }
+
+    &:active:not(:disabled) {
+      opacity: 0.9;
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+
+  &.btn-secondary {
+    background-color: var(--bg-tertiary);
+    color: var(--text-primary);
+    border: 1px solid var(--border);
+
+    &:hover:not(:disabled) {
+      background-color: var(--bg-secondary);
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+
+  &.btn-sm {
+    padding: $space-1 $space-2;
+    font-size: $font-size-xs;
+  }
+
+  &.btn-lg {
+    padding: $space-3 $space-6;
+    font-size: $font-size-base;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+// Input Styles
+.input {
+  padding: $space-2 $space-3;
+  border: 1px solid var(--border);
+  border-radius: $border-radius-md;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-size: $font-size-base;
+  @include smooth-transition;
+
+  &:hover:not(:disabled) {
+    border-color: var(--text-secondary);
+  }
+
+  &:focus {
+    border-color: $color-primary;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba($color-primary, 0.1);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+// Tooltip
+.tooltip {
+  position: relative;
+
+  &__trigger {
+    cursor: help;
+
+    &:hover .tooltip__content,
+    &:focus .tooltip__content {
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+
+  &__content {
+    position: absolute;
+    bottom: calc(100% + $space-2);
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--text-primary);
+    color: var(--bg-primary);
+    padding: $space-2 $space-3;
+    border-radius: $border-radius-md;
+    font-size: $font-size-sm;
+    white-space: nowrap;
+    z-index: $z-tooltip;
+    visibility: hidden;
+    opacity: 0;
+    @include smooth-transition;
+    @include shadow(md);
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border: 4px solid transparent;
+      border-top-color: var(--text-primary);
+    }
+  }
+}
+
+// Badge
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: $space-1;
+  padding: $space-1 $space-2;
+  border-radius: $border-radius-full;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-semibold;
+
+  &.badge-primary {
+    background-color: $color-primary;
+    color: $color-white;
+  }
+
+  &.badge-success {
+    background-color: $color-success;
+    color: $color-white;
+  }
+
+  &.badge-warning {
+    background-color: $color-warning;
+    color: $color-white;
+  }
+
+  &.badge-error {
+    background-color: $color-error;
+    color: $color-white;
+  }
+
+  &.badge-info {
+    background-color: $color-info;
+    color: $color-white;
+  }
+}
+
+// Status Indicator
+.status-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: $space-2;
+  font-size: $font-size-sm;
+
+  &__dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+
+    &.status-idle {
+      background-color: $color-gray-400;
+    }
+
+    &.status-active {
+      background-color: $color-success;
+      animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+
+    &.status-warning {
+      background-color: $color-warning;
+      animation: pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+
+    &.status-error {
+      background-color: $color-error;
+    }
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+// Panel
+.panel {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: $border-radius-lg;
+  padding: $space-4;
+  @include shadow(sm);
+}
+
+// Toolbar
+.toolbar {
+  @include flex-between;
+  background-color: var(--bg-secondary);
+  border-bottom: 1px solid var(--border);
+  padding: $space-3 $space-4;
+  gap: $space-4;
+}
+
+// Status Bar
+.status-bar {
+  @include flex-between;
+  background-color: var(--bg-secondary);
+  border-top: 1px solid var(--border);
+  padding: $space-2 $space-4;
+  font-size: $font-size-sm;
+  gap: $space-4;
+}

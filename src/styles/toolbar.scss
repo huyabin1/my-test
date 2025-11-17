@@ -1,0 +1,63 @@
+@import './variables';
+@import './mixins';
+
+.toolbar {
+  @include flex-between;
+  background-color: var(--bg-secondary);
+  border-bottom: 1px solid var(--border);
+  padding: $space-3 $space-4;
+  gap: $space-4;
+  flex-wrap: wrap;
+
+  @include respond-to('md') {
+    flex-wrap: wrap;
+  }
+}
+
+.toolbar__section {
+  @include flex-start;
+  gap: $space-3;
+}
+
+.toolbar__group {
+  @include flex-start;
+  gap: $space-2;
+  padding: $space-2;
+  background-color: var(--bg-tertiary);
+  border-radius: $border-radius-md;
+}
+
+.toolbar__label {
+  @include flex-start;
+  gap: $space-2;
+  font-size: $font-size-sm;
+  color: var(--text-primary);
+  cursor: pointer;
+}
+
+.toolbar__slider {
+  width: 100px;
+}
+
+.toolbar__color {
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--border);
+  border-radius: $border-radius-md;
+  cursor: pointer;
+
+  &:hover {
+    box-shadow: 0 0 0 2px var(--bg-secondary), 0 0 0 4px $color-primary;
+  }
+}
+
+.toolbar__separator {
+  width: 1px;
+  height: 24px;
+  background-color: var(--border);
+}
+
+.btn.active {
+  background-color: $color-primary;
+  color: $color-white;
+}

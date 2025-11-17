@@ -1,0 +1,33 @@
+@import './variables';
+@import './mixins';
+
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  @include transition(background-color);
+  @include transition(color);
+}
+
+.app__header {
+  @include flex-between;
+  background-color: var(--bg-secondary);
+  border-bottom: 1px solid var(--border);
+  padding: $space-4;
+  gap: $space-4;
+}
+
+.app__title {
+  margin: 0;
+  font-size: $font-size-2xl;
+  font-weight: $font-weight-bold;
+  color: var(--text-primary);
+}
+
+.app__main {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+}

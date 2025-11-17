@@ -1,0 +1,35 @@
+@import './variables';
+@import './mixins';
+
+.theme-switcher {
+  @include flex-start;
+  gap: $space-1;
+  padding: $space-2;
+}
+
+.theme-switcher__btn {
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 1px solid var(--border);
+  background-color: var(--bg-tertiary);
+  border-radius: $border-radius-md;
+  cursor: pointer;
+  @include flex-center;
+  @include smooth-transition;
+  font-size: $font-size-lg;
+
+  &:hover:not(.active) {
+    background-color: var(--bg-secondary);
+  }
+
+  &.active {
+    background-color: $color-primary;
+    color: $color-white;
+    border-color: $color-primary;
+  }
+
+  &:focus-visible {
+    @include focus-ring($color-primary);
+  }
+}
